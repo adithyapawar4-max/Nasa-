@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0e17;
+  --surface: #0f1724;
+  --surface-2: #111c2e;
+  --border: rgba(0, 229, 255, 0.18);
+  --accent: #00e5ff;
+  --accent-2: #00b4d8;
+  --text: #ffffff;
+  --muted: #8aa3b8;
+  --missing: #5a6b7c;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(0, 229, 255, 0.08), transparent 60%),
+    radial-gradient(1000px 500px at 90% 10%, rgba(0, 180, 216, 0.07), transparent 60%), var(--bg);
+  color: var(--text);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes starTwinkle {
+  0%,
+  100% {
+    opacity: 0.32;
+    filter: brightness(0.85);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+}
+
+.star-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  animation: starTwinkle 5s ease-in-out infinite;
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(8, 14, 24, 0.58));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 40px -18px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(0, 229, 255, 0.04);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 229, 255, 0.34);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 16px 48px -18px rgba(0, 229, 255, 0.25),
+    0 0 28px -8px rgba(0, 229, 255, 0.18);
+}
+
+.neon-underline {
+  position: relative;
+}
+.neon-underline::after {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeSlideIn 320ms ease-out both;
+}
+
+.animate-swap {
+  animation: fadeSlideIn 260ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-layer,
+  .animate-in,
+  .animate-swap {
+    animation: none !important;
+  }
+  .glass-card {
+    transition: none;
+  }
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 229, 255, 0.3) transparent;
+}
